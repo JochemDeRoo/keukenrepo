@@ -10,6 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/642ec4bc32.js" crossorigin="anonymous"></script>
     <title>panel</title>
+    <link rel="icon" type="image/png" href="/storage/icon.png">
 </head>
 
 <body class="bg-light">

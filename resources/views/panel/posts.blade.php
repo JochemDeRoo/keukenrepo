@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 @section('content')
     <div class="container">
-        <button class="btn btn-success btn-lg"><a href="/posts/create"> Nieuwe post aanmaken</a></button>
+    <button class="btn btn-success btn-lg"><a href="/Aposts/create"> Nieuwe post aanmaken</a></button>
         <div class="d-flex justify-content-center">
         <table class="table table-bordered">
             <thead class="thead-dark">
@@ -11,6 +11,7 @@
                 <th scope="col">gebruiker</th>
                 <th scope="col">bewerken</th>
                 <th scope="col">verwijder</th>
+                <th scope="col">status</th>
             </tr>
             </thead>
             <tbody>
@@ -26,6 +27,11 @@
                         {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
                     {!!Form::close()!!}
                 </td>
+                @if($post->approved == 0)
+                <td>niet betaald</td>
+                @elseif($post->approved == 1)
+                <td>betaald</td>
+                @endif
             </tr>
             @endforeach
     </table>

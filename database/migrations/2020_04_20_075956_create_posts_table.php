@@ -18,10 +18,11 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->mediumText('body');
             $table->timestamps();
+            $table->string('type');
             $table->integer('user_id');
             $table->string('user_role');
             $table->string('cover_image');
-            $table->boolean('approved');
+            $table->boolean('approved')->default('0');
         });
     }
 

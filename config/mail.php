@@ -73,7 +73,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'jochemyolo@gmail.com', 'name' => 'Jochem'],
+    'from' => ['address' => 'keukenfabrikant@outlook.com', 'name' => 'Keukenfabrikant'],
 
     /*
     |--------------------------------------------------------------------------

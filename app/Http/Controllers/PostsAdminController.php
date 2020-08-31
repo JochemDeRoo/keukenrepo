@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\User;
 
-class PostsController extends Controller
+class PostsAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts1 = Post::where('type', '=', 'news')->orderBy('id', 'asc')->get();
-        $posts2 = Post::where('type', '=', 'keuken')->orderBy('id', 'asc')->get();
-        return view('posts.index')->with('posts1', $posts1)->with('posts2', $posts2);  
+        //
     }
 
     /**
@@ -27,7 +25,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        return view('panel.makePost');
     }
 
     /**
@@ -69,21 +67,19 @@ class PostsController extends Controller
         $post->user_role = auth()->user()->role;
         $post->cover_image = $fileNameToStore;
         $post->save();
-        
 
-        return redirect('/')->with('success', 'Post Created');
+        return redirect('/admin/posts')->with('success', 'Post Created');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id 
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $post = Post::find($id);
-        return view('posts.show')->with('post', $post);
+        //
     }
 
     /**
@@ -99,7 +95,7 @@ class PostsController extends Controller
         else if(auth()->user()->id !== $post->user_id) {
             return redirect('/')->with('error', 'Unauthorized page');
         } 
-        return view('posts.edit')->with('post', $post);
+        return view('panel.editPost')->with('post', $post);
     }
 
     /**
@@ -113,12 +109,11 @@ class PostsController extends Controller
     {
         $this->validate($request, [
             'title' => 'required' ,
-            'body' => 'required',
-            'type' => 'required',
-            'cover_image' => 'image|nullable|max:1999'
-        ]);   
+            'body' => 'required'
+        ]);    
 
-        if($request->hasFile('cover_image')) {
+         //file
+         if($request->hasFile('cover_image')) {
             //get file with extension
             $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
             //get only file name
@@ -129,21 +124,24 @@ class PostsController extends Controller
             $fileNameToStore = $filename.'_'.time().'.'.$extension;
             //store image
             $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
-        } else {
-            $fileNameToStore = 'default.jpg';
-        }
-
-        //create
-        $post = new Post;
+        } 
+        
+        //update
+        $post = Post::find($id);
         $post->title = $request->input('title');
         $post->body = $request->input('body');
-        $post->type = $request->input('type');
-        $post->user_id = auth()->user()->id;      
-        $post->user_role = auth()->user()->role;
-        $post->cover_image = $fileNameToStore;
+        if($request->input('type') != 'empty'){
+            $posts->type = $request->input('type');
+        }
+        if($request->hasFile('cover_image')){
+            if($post->cover_image != 'default.jpg') {
+                Storage::delete('public/cover_images/' . $post->cover_image);
+            }
+            $post->cover_image = $fileNameToStore;
+        }
         $post->save();
-
-        return redirect('/')->with('success', 'Post Created');
+        
+        return redirect('/admin/posts')->with('success', 'Post Updated');
     }
 
     /**
@@ -154,17 +152,6 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        $post = Post::find($id);
-
-        if(auth()->user()->role == 'admin') {} 
-        else if(auth()->user()->id !== $post->user_id) {
-            return redirect('/')->with('error', 'Unauthorized page');
-        } 
-
-        // if($post->cover_image != 'default.jpg') {
-        // Storage::delete('public/cover_images/' . $post->cover_image);
-        // }
-        $post->delete();
-        return redirect('/')->with('success', 'Post Deleted');
+        //
     }
 }

@@ -17,7 +17,7 @@
                             <th></th>
                             <th></th>
                         </tr>
-                        @foreach($posts as $post)
+                        @foreach($posts1 as $post)
                         <tr>
                         <th>{{$post->title}}</th>
                             <th><a href="/posts/{{$post->id}}/edit" class="btn btn-dark">Edit</a></th>

@@ -1,16 +1,14 @@
-@extends('layouts.master')
+@extends('layouts.dashboard')
 @section('content')
+<div class="container">
     <style>
         html { scroll-behavior: smooth; }
     </style>
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     <h2>Create Post</h2>
-    {!! Form::open(['action' => 'PostsController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+    {!! Form::open(['action' => 'PostsAdminController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
     <div class="form-group">
-        <div class="custom-file">
-        {{Form::file('cover_image', ['class' => 'custom-file-input'])}}
-            <label class="custom-file-label" for="customFileLangHTML" data-browse="Bestand kiezen">Voeg je document toe</label>
-        </div>
+        {{Form::file('cover_image')}}
     </div>
         <div class="form-group">
             {{Form::label('title', 'Title')}}
@@ -21,13 +19,14 @@
             {{Form::textarea('body', '', ['id' => 'article-ckeditor', 'placeholder' => 'Body', 'class' =>'form-control'])}}
         </div>
         <div class="form-group">
-            {{Form::label('type', 'Type')}}<br>
+            {{Form::label('type', 'Type')}}
             {{Form::select('type', array('' => 'Selecteer een type post', 
-                                         'news' => 'Nieuws', 
-                                         'keuken' => 'Keukens'), null, ['class' => 'box'])}}
+                                         'news' => 'News', 
+                                         'keuken' => 'Keukens'))}}
         </div>
         {{Form::submit('Submit', ['class' =>'btn btn-success'])}}
     {!! Form::close() !!}
     <hr>
     <br>
+    </div>
 @endsection

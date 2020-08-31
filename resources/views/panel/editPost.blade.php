@@ -1,8 +1,9 @@
-@extends('layouts.master')
+@extends('layouts.dashboard')
 @section('content')
+<div class="container">
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     <h2>Edit Post</h2>
-    {!! Form::open(['action' => ['PostsController@update', $post->id], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+    {!! Form::open(['action' => ['PostsAdminController@update', $post->id], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
     <div class="form-group">
         {{Form::file('cover_image')}}
     </div>
@@ -23,4 +24,5 @@
         {{Form::hidden('_method','PUT')}}
         {{Form::submit('Submit', ['class' =>'btn btn-primary'])}}
     {!! Form::close() !!}
+    </div>
 @endsection

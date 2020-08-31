@@ -1,33 +1,31 @@
 @extends('layouts.master')
 @section('content')
+<link href="{{ asset('css/profile.css') }}" rel="stylesheet">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto:300,400|Yellowtail" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="container">
-   <h3 class="pb-3 mb-4 font-italic border-bottom">
-      @if(Auth::user()->id == $user->id)
-            Jouw profiel
-            @else Profiel van <strong>{{$user->name}}</strong>
-      @endif
-   </h3>
-
-   <div class="col-md-5">
-      <label>Voornaam: </label> 
-      <p>{{ $user->name }}</p>
+<!-- PAGE STUFF -->
+<div class="rela-block profile-card">
+   <div class="profile-pic" id="profile_pic"></div>
+      <div class="rela-block profile-name-container">
+         <div class="rela-block user-name" id="user_name">{{ $user->name }}</div>
+            <div class="rela-block user-desc" id="user_description">
+            @if(Auth::user()->id == $user->id)
+               {{ $user->email }}
+            @endif
+            
+            </div>
+            <div class="editbutton">
+               @if(!Auth::guest())
+                  @if(Auth::user()->id == $user->id)
+                     <a href="/profile/{{$user->id}}/edit" class="btn btn-success">Bewerken <i class="fas fa-user-edit"></i></a>
+                  @endif
+               @endif
+            </div>
+         </div>
+      </div>
    </div>
-   
-   <div class="col-md-5">
-      @if(Auth::user()->id == $user->id)
-         <label>E-mail: </label> 
-            <p>{{ $user->email }}</p>
-         @endif
-   </div>
-
-      @if(!Auth::guest())
-         @if(Auth::user()->id == $user->id)
-            <a href="/profile/{{$user->id}}/edit" class="btn btn-success">gegevens bewerken</a>
-         @endif
-      @endif
-   </div>
-   <hr>
 
    <h3 class="pb-3 mb-4 font-italic border-bottom">
       @if(Auth::user()->id == $user->id)
@@ -85,45 +83,6 @@
                <h5 class="card-title border-bottom pb-3">Keukennieuws week 1 <a href="#" class="float-right btn btn-sm btn-info d-inline-flex share"><i class="fas fa-share-alt"></i></a></h5>
                <p class="card-text">In deze week bespreken we Keukennieuws startup keuken.</p>
                <a href="#" class="btn btn-sm btn-info float-right">Lees meer <i class="fas fa-angle-double-right"></i></a>
-            </div>
-         </div>
-      </div>
-   </div>
-
-   <h3 class="mt-3 pb-3 mb-4 font-italic border-bottom">
-   @if(Auth::user()->id == $user->id)
-         Jouw favoriete keukens
-         @else Keukens voor <strong>{{$user->name}}</strong>
-      @endif
-   </h3>
-   <div class="row">
-   <div class="col-md-4">
-         <div class="card">
-            <img class="card-img-top" src="https://images.pexels.com/photos/2724749/pexels-photo-2724749.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Card image cap">
-            <div class="card-body">
-               <h5 class="card-title border-bottom pb-3">Moderne berkenhouten keukens</h5>
-               <p class="card-text">Hierin staan keukens die door klanten geadverteerd worden of gerelateerd zijn aan de klant zijn meest recent bekeken keukens.</p>
-               <a href="#" class="btn btn-sm btn-info float-right">Meer info <i class="fas fa-angle-double-right"></i></a>
-            </div>
-         </div>
-      </div>
-      <div class="col-md-4">
-         <div class="card">
-            <img class="card-img-top" src="https://images.pexels.com/photos/1358900/pexels-photo-1358900.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Card image cap">
-            <div class="card-body">
-               <h5 class="card-title border-bottom pb-3">Modern keukeneiland </h5>
-               <p class="card-text">Hierin staan keukens die door klanten geadverteerd worden of gerelateerd zijn aan de klant zijn meest recent bekeken keukens.</p>
-               <a href="#" class="btn btn-sm btn-info float-right">Meer info <i class="fas fa-angle-double-right"></i></a>
-            </div>
-         </div>
-      </div>
-      <div class="col-md-4">
-         <div class="card">
-            <img class="card-img-top" src="https://images.pexels.com/photos/1080721/pexels-photo-1080721.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Card image cap">
-            <div class="card-body">
-               <h5 class="card-title border-bottom pb-3">Keuken Deluxe marmer wit</h5>
-               <p class="card-text">Hierin staan keukens die door klanten geadverteerd worden of gerelateerd zijn aan de klant zijn meest recent bekeken keukens.</p>
-               <a href="#" class="btn btn-sm btn-info float-right">Meer info <i class="fas fa-angle-double-right"></i></a>
             </div>
          </div>
       </div>

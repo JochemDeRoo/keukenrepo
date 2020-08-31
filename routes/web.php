@@ -31,7 +31,8 @@ route::resource('admin/FAQ', 'FAQAdminController');
 route::get('/faq', 'FAQController@index');
 route::resource('profile', 'profileController');
 Route::group(['middleware' => ['auth']], function(){
-    Route::post('favorite/{post}/add', 'FavoriteController@add')->name('post.favorite');
+Route::post('favorite/{post}/add', 'FavoriteController@add')->name('post.favorite');
+route::resource('Aposts', 'PostsAdminController');
 });
 
 Route::match(['GET', 'POST'], '/contact', function() {
