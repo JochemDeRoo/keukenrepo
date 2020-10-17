@@ -69,13 +69,13 @@
                             {{ Auth::user()->name }}
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenu2">  
-                                <a class="dropdown-item" type="button" href="/profile/{{Auth::user()->id}}">Profielpagina</a>                  
-                            <a class="dropdown-item" type="button" href="/posts/create">Maak Post</a>
+                            <a class="dropdown-item" type="button" href="/profile/{{Auth::user()->id}}"><i class="fas fa-address-card"></i>Profielpagina</a>                  
+                            <a class="dropdown-item" type="button" href="/posts/create"><i class="fas fa-pencil-alt"></i>Maak Post</a>
                             @if(Auth::user()->role == 'admin')
-                                <a class="dropdown-item" type="button" href="/admin/users">Admin paneel</a>
+                                <a class="dropdown-item" type="button" href="/admin/users"><i class="fas fa-user-shield"></i>Admin paneel</a>
                             @endif
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                                    <button class="dropdown-item" href="{{ route('logout') }}">Logout</button>
+                                    <button class="dropdown-item" href="{{ route('logout') }}"><i class="fas fa-sign-out-alt"></i>Logout</button>
                                     @csrf
                                 </form>
                         </div>

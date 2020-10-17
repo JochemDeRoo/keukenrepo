@@ -41,8 +41,8 @@
     <a href="/contact"><button class="btn btn-success btn-lg" type="button" >Contactpagina</button></a>
   </div>
 </div>
-
 </div> 
+</div>
 <!-- einde container -->
 
 @endsection
