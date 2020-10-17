@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta charset="utf-8">
+    <meta name="author" content="keukenfabrikant">
+    <meta name="keywords" content="Keukenfabrikant, keukens, Keukens, Keukenfabrikant, keuken, Keuken">
+    <meta name="description" content="Keukenfabrikant">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{config('app.name', 'error')}}</title>
@@ -11,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/home.css') }}" rel="stylesheet">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://kit.fontawesome.com/5a37eae510.js" crossorigin="anonymous"></script>
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -18,23 +22,33 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/16.0.0/classic/ckeditor.js"></script>
     <script src="https://kit.fontawesome.com/5a37eae510.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="icon" type="image/png" href="/storage/icon.png">
-
-
     <title>{{ config('app.name') }}</title>
     </head>
     <body>
     <!-- Authentication Links -->
     @guest
-        <div id="app">
+    <div id="app">
             @include('partials.navbar')
         </div>
         <br>
-        <div class="container">
             @include('inc.messages')
-            @yield('content')
-        </div>
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="sidebar-left">
+                            <img src="/storage/keukenbanner.jpg"></img>
+                    </div>
+                </div>
+
+                <div class="col-sm-8">
+                    @yield('content')
+                </div>
+
+                <div class="col-sm-2 right">
+                    <div class="sidebar-right">
+                        <img src="/storage/keukenbanner.jpg"></img>
+                    </div>
+                </div>
     @endguest
     @auth
     @if(Auth::user()->blocked == '1')
@@ -66,14 +80,24 @@
             @include('partials.navbar')
         </div>
         <br>
-        <div class="container">
             @include('inc.messages')
-            @yield('content')
-        </div>
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="sidebar-left">
+                            <img src="/storage/keukenbanner.jpg"></img>
+                    </div>
+                </div>
+
+                <div class="col-sm-8">
+                    @yield('content')
+                </div>
+
+                <div class="col-sm-2 right">
+                    <div class="sidebar-right">
+                        <img src="/storage/keukenbanner.jpg"></img>
+                    </div>
+                </div>
     @endif
     @endauth
-    
-    
-    
 </body>
 </html>

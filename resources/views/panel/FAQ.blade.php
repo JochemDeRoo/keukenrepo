@@ -1,6 +1,5 @@
 @extends('layouts.dashboard')
 @section('content')
-    <div class="container">
     <button class="btn btn-success btn-lg"><a href="/admin/FAQ/create"> Nieuwe vraag aanmaken</a></button>
         <div class="d-flex justify-content-center">
         <table class="table table-bordered">
@@ -29,8 +28,6 @@
             </tr>
             @endforeach
     </table>
-    </div>
-</div>
 <script type="text/javascript">
     $('.confirmation').click(function(e){
         let result = confirm("Weet je zeker dat je de foto wilt verwijderen?");

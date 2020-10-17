@@ -23,6 +23,8 @@ route::resource('posts', 'PostsController');
 Auth::routes();
 Auth::routes(['verify' => true]);
 Route::get('/home', 'PagesController@index')->name('home');
+Route::get('/keukens', 'PagesController@keukens')->name('keukens');
+Route::get('/nieuws', 'PagesController@niews')->name('nieuws');
 route::resource('admin/posts', 'HomeController');
 route::resource('admin/users', 'userController');
 Route::post('comments/{post_id}', ['as' => 'comments.stored', 'uses' => 'CommentsController@store']);
